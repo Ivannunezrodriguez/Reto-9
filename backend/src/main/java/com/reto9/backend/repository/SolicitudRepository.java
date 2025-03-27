@@ -1,0 +1,8 @@
+package com.reto9.backend.repository;
+
+
+import com.reto9.backend.model.Solicitud;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface SolicitudRepository extends JpaRepository<Solicitud, Integer> {
+}
