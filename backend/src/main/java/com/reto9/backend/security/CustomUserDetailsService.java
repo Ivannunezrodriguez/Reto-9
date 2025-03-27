@@ -22,7 +22,8 @@ public class CustomUserDetailsService implements UserDetailsService {
                 .username(usuario.getUsername())
                 .password(usuario.getPassword())
                 .disabled(usuario.getEnabled() == 0)
-                .roles(usuario.getRoles()) // Suponiendo que devuelves un String como "ADMIN" o "USUARIO"
+                .roles(usuario.getRoles()) // solo si tienes 'ADMIN' o 'USUARIO' en la BBDD
                 .build();
     }
+
 }

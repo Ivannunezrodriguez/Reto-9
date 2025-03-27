@@ -21,7 +21,7 @@ INSERT INTO Usuarios (username, nombre, apellidos, email, password, enabled, fec
 ('admin', 'Admin', 'User', 'admin@example.com', 'admin', 1, CURDATE());
 
 -- UsuarioPerfil
-INSERT INTO UsuarioPerfil (username, id_perfil) VALUES
+INSERT INTO Usuario_Perfil (username, id_perfil) VALUES
 ('jdoe', 1),
 ('admin', 2);
 

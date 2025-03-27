@@ -36,3 +36,4 @@ public class VacanteController {
         vacanteRepository.save(vacante);
     }
 }
+
