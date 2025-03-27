@@ -15,6 +15,7 @@ public class UsuarioPerfil {
     private String username;
 
     @Id
+    @Column(name = "id_perfil")
     private Integer idPerfil;
 
     @ManyToOne
