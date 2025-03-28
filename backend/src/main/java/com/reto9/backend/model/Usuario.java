@@ -15,16 +15,15 @@ public class Usuario {
     @Id
     private String username;
 
+    private String password;
     private String nombre;
     private String apellidos;
     private String email;
-    private String password;
 
-    private int enabled;
-
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
 
-    // Este campo es útil para el JWT y para la carga de roles
-    private String roles; // Ejemplo: "ADMIN", "USUARIO"
+    private Integer enabled; // 1 = activo, 0 = inactivo
+
+    private String roles; // "ADMIN", "USUARIO", etc.
 }

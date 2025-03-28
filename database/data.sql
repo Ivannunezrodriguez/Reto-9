@@ -1,35 +1,25 @@
-
--- Inserción de datos iniciales para pruebas
+-- Usuarios
+INSERT INTO usuarios (username, nombre, apellidos, email, password, enabled, fecha_registro, roles)
+VALUES 
+('admin', 'Admin', 'User', 'admin@example.com', '$2a$10$EmmQ22QvIYocA/Q.NWQZHewrRDzuAvt1faGMou58bBIHfbWpoNN8i', 1, CURDATE(), 'ADMIN'),
+('jdoe', 'John', 'Doe', 'jdoe@example.com', '$2a$10$4Vp2OzRIg9vbOtjViFHZsOKxUyaZjjyPOZnI2VQAYE7WTOjOZJ8Cu', 1, CURDATE(), 'USUARIO');
 
 -- Empresas
-INSERT INTO Empresas (razon_social, nombre_fiscal, pais) VALUES
-('Tech Solutions', 'Tech Solutions S.A.', 'España'),
-('Global Corp', 'Global Corporation Ltd.', 'México');
+INSERT INTO empresa (nombre, descripcion, ubicacion)
+VALUES 
+('TechCorp', 'Empresa de tecnología e innovación', 'Calle Falsa 123, Madrid');
 
--- Categorias
-INSERT INTO Categorias (nombre, descripcion) VALUES
-('Desarrollo', 'Puestos relacionados con desarrollo de software'),
-('Marketing', 'Puestos relacionados con publicidad y marketing');
-
--- Perfiles
-INSERT INTO Perfiles (nombre) VALUES
-('USUARIO'), ('ADMIN');
-
--- Usuarios
-INSERT INTO Usuarios (username, nombre, apellidos, email, password, enabled, fecha_registro) VALUES
-('jdoe', 'John', 'Doe', 'jdoe@example.com', '1234', 1, CURDATE()),
-('admin', 'Admin', 'User', 'admin@example.com', 'admin', 1, CURDATE());
-
--- UsuarioPerfil
-INSERT INTO Usuario_Perfil (username, id_perfil) VALUES
-('jdoe', 1),
-('admin', 2);
+-- Categorías
+INSERT INTO categoria (nombre)
+VALUES ('Informática'), ('Marketing'), ('Logística');
 
 -- Vacantes
-INSERT INTO Vacantes (nombre, descripcion, fecha, salario, estatus, destacado, imagen_vacante, detalles, id_categoria, id_empresa) VALUES
-('Programador Java', 'Desarrollo de aplicaciones backend en Java', CURDATE(), 28000, 'CREADA', 1, 'img/java.png', 'Se requiere experiencia en Spring Boot', 1, 1),
-('Especialista SEO', 'Optimización de motores de búsqueda', CURDATE(), 24000, 'CREADA', 0, 'img/seo.png', 'Se valorará conocimiento en Google Analytics', 2, 2);
+INSERT INTO vacante (nombre, descripcion, ubicacion, estatus, fecha_publicacion, salario, empresa_id, categoria_id)
+VALUES 
+('Desarrollador Java', 'Desarrollo backend con Spring Boot', 'Madrid', 'ACTIVA', CURDATE(), 30000.00, 1, 1),
+('Community Manager', 'Gestión de redes sociales', 'Barcelona', 'ACTIVA', CURDATE(), 22000.00, 1, 2);
 
 -- Solicitudes
-INSERT INTO Solicitudes (fecha, archivo, comentarios, estado, id_vacante, username) VALUES
-(CURDATE(), 'cv_jdoe.pdf', 'Estoy interesado en esta vacante.', 0, 1, 'jdoe');
+INSERT INTO solicitud (usuario_username, vacante_id_vacante, fecha_solicitud, comentario)
+VALUES 
+('jdoe', 1, CURDATE(), 'Estoy muy interesado en esta vacante');

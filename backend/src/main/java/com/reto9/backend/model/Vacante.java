@@ -4,38 +4,33 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
-@Table(name = "vacantes")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Vacante {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idVacante;
 
     private String nombre;
     private String descripcion;
-
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-
+    private String ubicacion;
     private Double salario;
 
     @Enumerated(EnumType.STRING)
     private EstatusVacante estatus;
 
-    private Boolean destacado;
-    private String imagenVacante;
-    private String detalles;
+    @Temporal(TemporalType.DATE)
+    private Date fechaPublicacion;
 
     @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private Categoria categoria;
-
-    @ManyToOne
-    @JoinColumn(name = "id_empresa")
+    @JoinColumn(name = "empresa_id")
     private Empresa empresa;
+
+    @ManyToOne
+    @JoinColumn(name = "categoria_id")
+    private Categoria categoria;
 }

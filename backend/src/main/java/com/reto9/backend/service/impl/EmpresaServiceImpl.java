@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -20,18 +21,17 @@ public class EmpresaServiceImpl implements EmpresaService {
     }
 
     @Override
+    public Optional<Empresa> findById(Integer id) {
+        return empresaRepository.findById(id);
+    }
+
+    @Override
     public Empresa save(Empresa empresa) {
         return empresaRepository.save(empresa);
     }
 
     @Override
-    public Empresa update(Integer id, Empresa empresa) {
-        empresa.setIdEmpresa(id);
-        return empresaRepository.save(empresa);
-    }
-
-    @Override
-    public void delete(Integer id) {
+    public void deleteById(Integer id) {
         empresaRepository.deleteById(id);
     }
 }

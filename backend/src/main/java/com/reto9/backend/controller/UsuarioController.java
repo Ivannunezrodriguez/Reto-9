@@ -1,6 +1,7 @@
 package com.reto9.backend.controller;
 
-
+import com.reto9.backend.model.Usuario;
+import com.reto9.backend.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,17 +12,15 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UsuarioController {
 
-    private final com.reto9.backend.repository.UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @GetMapping
-    public List<com.reto9.backend.model.Usuario> getAll() {
+    public List<Usuario> findAll() {
         return usuarioRepository.findAll();
     }
 
-    @PutMapping("/{username}/baja")
-    public com.reto9.backend.model.Usuario darDeBaja(@PathVariable String username) {
-        com.reto9.backend.model.Usuario usuario = usuarioRepository.findByUsername(username).orElseThrow();
-        usuario.setEnabled(0);
+    @PostMapping
+    public Usuario create(@RequestBody Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 }

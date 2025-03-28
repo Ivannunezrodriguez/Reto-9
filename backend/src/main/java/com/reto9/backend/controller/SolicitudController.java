@@ -1,6 +1,5 @@
 package com.reto9.backend.controller;
 
-
 import com.reto9.backend.model.Solicitud;
 import com.reto9.backend.repository.SolicitudRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +15,7 @@ public class SolicitudController {
     private final SolicitudRepository solicitudRepository;
 
     @GetMapping
-    public List<Solicitud> getAll() {
+    public List<Solicitud> findAll() {
         return solicitudRepository.findAll();
     }
 

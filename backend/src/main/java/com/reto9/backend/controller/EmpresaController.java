@@ -15,23 +15,12 @@ public class EmpresaController {
     private final EmpresaRepository empresaRepository;
 
     @GetMapping
-    public List<Empresa> getAll() {
+    public List<Empresa> findAll() {
         return empresaRepository.findAll();
     }
 
     @PostMapping
     public Empresa create(@RequestBody Empresa empresa) {
         return empresaRepository.save(empresa);
-    }
-
-    @PutMapping("/{id}")
-    public Empresa update(@PathVariable Integer id, @RequestBody Empresa empresa) {
-        empresa.setIdEmpresa(id);
-        return empresaRepository.save(empresa);
-    }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        empresaRepository.deleteById(id);
     }
 }

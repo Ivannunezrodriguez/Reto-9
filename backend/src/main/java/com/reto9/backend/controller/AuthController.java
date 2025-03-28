@@ -1,48 +1,41 @@
 package com.reto9.backend.controller;
 
-import com.reto9.backend.dto.LoginRequest;
-import com.reto9.backend.security.CustomUserDetailsService;
-import com.reto9.backend.security.JwtService;
-import org.springframework.http.HttpStatus;
+import com.reto9.backend.dto.AuthRequest;
+import com.reto9.backend.dto.AuthResponse;
+import com.reto9.backend.model.Usuario;
+import com.reto9.backend.repository.UsuarioRepository;
+import com.reto9.backend.security.JwtUtil;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
-    private final CustomUserDetailsService userDetailsService;
-
-    public AuthController(AuthenticationManager authenticationManager, JwtService jwtService, CustomUserDetailsService userDetailsService) {
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-        this.userDetailsService = userDetailsService;
-    }
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder passwordEncoder;
+    private final JwtUtil jwtUtil;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
-            );
+    public ResponseEntity<?> login(@RequestBody AuthRequest request) {
+        Optional<Usuario> optionalUser = usuarioRepository.findByUsername(request.getUsername());
 
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            String token = jwtService.generateToken(userDetails);
-
-            return ResponseEntity.ok(Collections.singletonMap("token", token));
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid credentials");
+        if (optionalUser.isEmpty()) {
+            return ResponseEntity.status(401).body("Usuario no encontrado");
         }
+
+        Usuario usuario = optionalUser.get();
+
+        if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
+            return ResponseEntity.status(401).body("Contraseña incorrecta");
+        }
+
+        String token = jwtUtil.generarToken(usuario.getUsername(), usuario.getRoles());
+        return ResponseEntity.ok(new AuthResponse(token));
     }
 }
