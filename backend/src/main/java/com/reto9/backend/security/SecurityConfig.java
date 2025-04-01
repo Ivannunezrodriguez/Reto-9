@@ -23,6 +23,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.List;
 
+/**
+ * Configuración de seguridad para el backend utilizando JWT y Spring Security.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -31,6 +34,9 @@ public class SecurityConfig {
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private final UserDetailsService userDetailsService;
 
+    /**
+     * Define la cadena de filtros de seguridad y las reglas de acceso.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
@@ -45,7 +51,8 @@ public class SecurityConfig {
                 )
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint((request, response, authException) ->
-                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado"))
+                                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "No autorizado")
+                        )
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
@@ -53,6 +60,9 @@ public class SecurityConfig {
         return http.build();
     }
 
+    /**
+     * Configuración de CORS para permitir acceso desde distintos orígenes.
+     */
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
@@ -66,11 +76,17 @@ public class SecurityConfig {
         return source;
     }
 
+    /**
+     * Proveedor de codificación de contraseñas con BCrypt.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Proveedor de autenticación basado en los detalles del usuario y el codificador.
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -79,6 +95,9 @@ public class SecurityConfig {
         return authProvider;
     }
 
+    /**
+     * Bean de AuthenticationManager para el sistema de login.
+     */
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();

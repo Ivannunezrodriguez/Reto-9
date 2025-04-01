@@ -1,24 +1,27 @@
 package com.reto9.backend.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Table(name = "categorias")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_categoria")
     private Integer id;
 
     private String nombre;
 
+    private String descripcion;
+
     @OneToMany(mappedBy = "categoria")
-    @JsonIgnore
     private List<Vacante> vacantes;
 }

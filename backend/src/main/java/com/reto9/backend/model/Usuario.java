@@ -7,7 +7,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "usuarios")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Usuario {
@@ -23,7 +24,15 @@ public class Usuario {
     @Temporal(TemporalType.TIMESTAMP)
     private Date fechaRegistro;
 
-    private Integer enabled; // 1 = activo, 0 = inactivo
+    /**
+     * Estado del usuario:
+     * 1 = activo, 0 = inactivo (baja lógica)
+     */
+    private Integer enabled;
 
-    private String roles; // "ADMIN", "USUARIO", etc.
+    /**
+     * Rol del usuario:
+     * Puede ser "ADMIN", "USUARIO", etc.
+     */
+    private String roles;
 }

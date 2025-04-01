@@ -7,30 +7,44 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Data
+@Table(name = "vacantes")
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Vacante {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer idVacante;
+    @Column(name = "id_vacante")
+    private Integer id;
 
     private String nombre;
+
     private String descripcion;
+
     private String ubicacion;
+
     private Double salario;
 
     @Enumerated(EnumType.STRING)
     private EstatusVacante estatus;
 
     @Temporal(TemporalType.DATE)
-    private Date fechaPublicacion;
+    private Date fecha;
+
+    private String imagen;
+
+    private String detalles;
 
     @ManyToOne
-    @JoinColumn(name = "empresa_id")
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
+
+    @ManyToOne
+    @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
-    @ManyToOne
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @OneToMany(mappedBy = "vacante")
+    private List<Solicitud> solicitudes;
 }
