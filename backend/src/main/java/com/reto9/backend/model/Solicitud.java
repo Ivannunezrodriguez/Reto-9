@@ -6,6 +6,7 @@ import lombok.*;
 import java.util.Date;
 
 @Entity
+@Table(name = "solicitudes")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,19 +15,23 @@ public class Solicitud {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_solicitud")
     private Integer id;
 
-    @ManyToOne(optional = false)
-    private Usuario usuario;
+    @Temporal(TemporalType.DATE)
+    private Date fecha;
 
-    @ManyToOne(optional = false)
+    private String archivo;
+
+    private String comentarios;
+
+    private Integer estado; // 0 = pendiente, 1 = adjudicada
+
+    @ManyToOne
+    @JoinColumn(name = "id_vacante")
     private Vacante vacante;
 
-    private String comentario;
-
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaSolicitud;
-
-    @Column(nullable = false)
-    private Integer estado = 0; // 0 = pendiente, 1 = adjudicada
+    @ManyToOne
+    @JoinColumn(name = "username")
+    private Usuario usuario;
 }

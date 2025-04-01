@@ -14,10 +14,12 @@ import java.util.List;
 @AllArgsConstructor
 public class Vacante {
 
+    // Vacante.java
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_vacante")
-    private Integer id;
+    private int id; // o Integer
+
+    public int getId() { return id; }
+
 
     private String nombre;
 

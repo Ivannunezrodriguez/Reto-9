@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
@@ -13,26 +14,30 @@ import java.util.Date;
 @AllArgsConstructor
 public class Usuario {
 
+    // Usuario.java
     @Id
     private String username;
 
-    private String password;
+    public String getUsername() { return username; }
+
+
     private String nombre;
+
     private String apellidos;
+
     private String email;
 
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date fechaRegistro;
+    private String password;
 
-    /**
-     * Estado del usuario:
-     * 1 = activo, 0 = inactivo (baja lógica)
-     */
     private Integer enabled;
 
-    /**
-     * Rol del usuario:
-     * Puede ser "ADMIN", "USUARIO", etc.
-     */
-    private String roles;
+    @Column(name = "fecha_registro")
+    @Temporal(TemporalType.DATE)
+    private Date fechaRegistro;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<Solicitud> solicitudes;
+
+    @OneToMany(mappedBy = "usuario")
+    private List<UsuarioPerfil> perfiles;
 }
