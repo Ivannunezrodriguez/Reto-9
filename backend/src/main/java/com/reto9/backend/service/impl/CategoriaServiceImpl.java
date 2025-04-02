@@ -1,10 +1,11 @@
-package com.reto9.backend.service.impl;
+// CategoriaServiceImpl.java
+package com.reto9.service;
 
-import com.reto9.backend.dto.CategoriaDTO;
-import com.reto9.backend.model.Categoria;
-import com.reto9.backend.repository.CategoriaRepository;
-import com.reto9.backend.service.CategoriaService;
-import lombok.RequiredArgsConstructor;
+import com.reto9.dto.CategoriaDTO;
+import com.reto9.dto.CategoriaRequestDTO;
+import com.reto9.model.Categoria;
+import com.reto9.repository.CategoriaRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,33 +13,66 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class CategoriaServiceImpl implements CategoriaService {
 
-    private final CategoriaRepository categoriaRepository;
+    @Autowired
+    private CategoriaRepository categoriaRepository;
+
+    private CategoriaDTO convertToDTO(Categoria categoria) {
+        CategoriaDTO dto = new CategoriaDTO();
+        dto.setId(categoria.getId());
+        dto.setNombre(categoria.getNombre());
+        dto.setDescripcion(categoria.getDescripcion());
+        return dto;
+    }
+
+    private Categoria convertToEntity(CategoriaRequestDTO dto) {
+        Categoria categoria = new Categoria();
+        categoria.setNombre(dto.getNombre());
+        categoria.setDescripcion(dto.getDescripcion());
+        return categoria;
+    }
 
     @Override
-    public List<CategoriaDTO> findAllDTO() {
-        return categoriaRepository.findAll().stream()
-                .map(c -> new CategoriaDTO(
-                        c.getIdCategoria(),
-                        c.getNombre(),
-                        c.getDescripcion()))
+    public List<CategoriaDTO> findAll() {
+        return categoriaRepository.findAll()
+                .stream()
+                .map(this::convertToDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Categoria save(Categoria categoria) {
-        return categoriaRepository.save(categoria);
+    public CategoriaDTO findById(Integer id) {
+        Categoria categoria = categoriaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Categoría no encontrada con id: " + id));
+        return convertToDTO(categoria);
     }
 
     @Override
-    public Optional<Categoria> findById(int idCategoria) {
-        return categoriaRepository.findById(idCategoria);
+    public CategoriaDTO save(CategoriaRequestDTO dto) {
+        Categoria categoria = convertToEntity(dto);
+        return convertToDTO(categoriaRepository.save(categoria));
     }
 
     @Override
-    public void deleteById(int idCategoria) {
-        categoriaRepository.deleteById(idCategoria);
+    public CategoriaDTO update(Integer id, CategoriaRequestDTO dto) {
+        Optional<Categoria> optional = categoriaRepository.findById(id);
+        if (optional.isEmpty()) {
+            throw new RuntimeException("Categoría no encontrada con id: " + id);
+        }
+
+        Categoria categoria = optional.get();
+        categoria.setNombre(dto.getNombre());
+        categoria.setDescripcion(dto.getDescripcion());
+
+        return convertToDTO(categoriaRepository.save(categoria));
+    }
+
+    @Override
+    public void delete(Integer id) {
+        if (!categoriaRepository.existsById(id)) {
+            throw new RuntimeException("Categoría no encontrada con id: " + id);
+        }
+        categoriaRepository.deleteById(id);
     }
 }

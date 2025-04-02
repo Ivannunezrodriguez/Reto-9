@@ -1,37 +1,44 @@
-package com.reto9.backend.controller;
+// CategoriaController.java
+package com.reto9.controller;
 
-import com.reto9.backend.dto.CategoriaDTO;
-import com.reto9.backend.model.Categoria;
-import com.reto9.backend.service.CategoriaService;
-import lombok.RequiredArgsConstructor;
+import com.reto9.dto.CategoriaDTO;
+import com.reto9.dto.CategoriaRequestDTO;
+import com.reto9.service.CategoriaService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorias")
-@RequiredArgsConstructor
 public class CategoriaController {
 
-    private final CategoriaService categoriaService;
+    @Autowired
+    private CategoriaService categoriaService;
 
     @GetMapping
     public List<CategoriaDTO> getAll() {
-        return categoriaService.findAllDTO();
+        return categoriaService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public CategoriaDTO getById(@PathVariable Integer id) {
+        return categoriaService.findById(id);
     }
 
     @PostMapping
-    public Categoria crear(@RequestBody Categoria categoria) {
-        return categoriaService.save(categoria);
+    public CategoriaDTO create(@Valid @RequestBody CategoriaRequestDTO dto) {
+        return categoriaService.save(dto);
     }
 
-    @PutMapping
-    public Categoria actualizar(@RequestBody Categoria categoria) {
-        return categoriaService.save(categoria);
+    @PutMapping("/{id}")
+    public CategoriaDTO update(@PathVariable Integer id, @Valid @RequestBody CategoriaRequestDTO dto) {
+        return categoriaService.update(id, dto);
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable int idCategoria) {
-        categoriaService.deleteById(idCategoria);
+    public void delete(@PathVariable Integer id) {
+        categoriaService.delete(id);
     }
 }
