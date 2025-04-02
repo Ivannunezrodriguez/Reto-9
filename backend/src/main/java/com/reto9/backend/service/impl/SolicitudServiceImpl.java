@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +22,61 @@ public class SolicitudServiceImpl implements SolicitudService {
         return solicitudRepository.findAll()
                 .stream()
                 .map(s -> new SolicitudDTO(
-                        s.getId(),
+                        s.getIdSolicitud(),
                         s.getComentarios(),
                         s.getFecha(),
                         s.getEstado(),
                         s.getUsuario().getUsername(),
-                        s.getVacante().getId()
+                        s.getVacante().getIdVacante(),
+                        s.getArchivo()
                 ))
-                .toList();
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SolicitudDTO> findByUsername(String username) {
+        return solicitudRepository.findByUsuarioUsername(username).stream()
+                .map(s -> new SolicitudDTO(
+                        s.getIdSolicitud(),
+                        s.getComentarios(),
+                        s.getFecha(),
+                        s.getEstado(),
+                        s.getUsuario().getUsername(),
+                        s.getVacante().getIdVacante(),
+                                                s.getArchivo()
+
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<SolicitudDTO> findByVacante(int Vacante) {
+        return solicitudRepository.findByVacanteId(Vacante).stream()
+                .map(s -> new SolicitudDTO(
+                        s.getIdSolicitud(),
+                        s.getComentarios(),
+                        s.getFecha(),
+                        s.getEstado(),
+                        s.getUsuario().getUsername(),
+                        s.getVacante().getIdVacante()
+                        ,
+                        s.getArchivo()
+                ))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Solicitud save(Solicitud solicitud) {
+        return solicitudRepository.save(solicitud);
+    }
+
+    @Override
+    public Optional<Solicitud> findById(int id_solicitud) {
+        return solicitudRepository.findById(id_solicitud);
+    }
+
+    @Override
+    public void deleteById(int id_solicitud) {
+        solicitudRepository.deleteById(id_solicitud);
     }
 }

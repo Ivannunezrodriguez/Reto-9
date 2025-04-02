@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,14 +18,27 @@ public class CategoriaServiceImpl implements CategoriaService {
     private final CategoriaRepository categoriaRepository;
 
     @Override
-    public List<CategoriaDTO> getAll() {
-        return categoriaRepository.findAll()
-                .stream()
+    public List<CategoriaDTO> findAllDTO() {
+        return categoriaRepository.findAll().stream()
                 .map(c -> new CategoriaDTO(
-                        c.getId(),
+                        c.getIdCategoria(),
                         c.getNombre(),
-                        c.getDescripcion()
-                ))
-                .toList();
+                        c.getDescripcion()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Categoria save(Categoria categoria) {
+        return categoriaRepository.save(categoria);
+    }
+
+    @Override
+    public Optional<Categoria> findById(int idCategoria) {
+        return categoriaRepository.findById(idCategoria);
+    }
+
+    @Override
+    public void deleteById(int idCategoria) {
+        categoriaRepository.deleteById(idCategoria);
     }
 }

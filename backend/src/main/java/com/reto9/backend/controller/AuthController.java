@@ -3,7 +3,6 @@ package com.reto9.backend.controller;
 import com.reto9.backend.dto.AuthRequest;
 import com.reto9.backend.dto.AuthResponse;
 import com.reto9.backend.model.Usuario;
-import com.reto9.backend.model.UsuarioPerfil;
 import com.reto9.backend.security.JwtUtil;
 import com.reto9.backend.service.UsuarioPerfilService;
 import com.reto9.backend.service.UsuarioService;
@@ -35,13 +34,22 @@ public class AuthController {
 
         Usuario usuario = optional.get();
 
+        if (usuario.getEnabled() != 1) {
+            return ResponseEntity.status(403).body("Usuario deshabilitado");
+        }
+
         if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
             return ResponseEntity.status(401).body("Contraseña incorrecta");
         }
 
         String role = usuarioPerfilService.findByUsername(usuario.getUsername())
-                .stream().map(up -> up.getPerfil().getNombre())
-                .findFirst().orElse("USUARIO");
+                .stream()
+                .map(up -> "ROLE_" + up.getIdPerfil()+up.getUsername().toUpperCase()) // ✅ Aquí sí tienes acceso a Perfil
+                .findFirst()
+                .orElse("ROLE_USUARIO");
+
+
+
 
         String token = jwtUtil.generarToken(usuario.getUsername(), role);
         return ResponseEntity.ok(new AuthResponse(token));

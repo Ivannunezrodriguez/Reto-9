@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Optional;
 
 public interface UsuarioService {
+    List<UsuarioDTO> findAllDTO();
     List<Usuario> findAll();
     Optional<Usuario> findByUsername(String username);
     Usuario save(Usuario usuario);
     void deleteByUsername(String username);
-
-    List<UsuarioDTO> getAllUsuariosDTO();
+    void deshabilitarUsuario(String username);
 }

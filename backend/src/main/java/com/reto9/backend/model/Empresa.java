@@ -1,22 +1,19 @@
 package com.reto9.backend.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.util.List;
 
 @Entity
 @Table(name = "empresas")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+@Data
 public class Empresa {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa")
-    private Integer id;
+    private int idEmpresa;
 
     @Column(name = "razon_social", nullable = false)
     private String razonSocial;

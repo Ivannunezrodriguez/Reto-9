@@ -1,52 +1,45 @@
 package com.reto9.backend.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
-
+@Data
 @Entity
 @Table(name = "vacantes")
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
+
 public class Vacante {
 
-    // Vacante.java
     @Id
-    private int id; // o Integer
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_vacante")
+    private int idVacante;
 
-    public int getId() { return id; }
-
-
-    private String nombre;
-
+    private double salario;
     private String descripcion;
-
-    private String ubicacion;
-
-    private Double salario;
+    private String detalles;
+    private Date fecha;
+    private int destacado;
+    private String nombre;
+    @Column(name = "imagen_vacante")
+    private String imagenVacante;
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "estatus")
     private EstatusVacante estatus;
 
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-
-    private String imagen;
-
-    private String detalles;
-
-    @ManyToOne
-    @JoinColumn(name = "id_categoria")
-    private Categoria categoria;
 
     @ManyToOne
     @JoinColumn(name = "id_empresa")
     private Empresa empresa;
 
+    @ManyToOne
+    @JoinColumn(name = "id_categoria")
+    private Categoria categoria;
+
     @OneToMany(mappedBy = "vacante")
     private List<Solicitud> solicitudes;
+
+
 }

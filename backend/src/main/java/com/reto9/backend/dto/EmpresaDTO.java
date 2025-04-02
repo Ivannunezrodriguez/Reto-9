@@ -1,27 +1,21 @@
 package com.reto9.backend.dto;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Data
 public class EmpresaDTO {
-    private int id;
+    private int idEmpresa;
     private String razonSocial;
+    private String direccionFiscal;
     private String pais;
-    private String archivo;
 
-    public EmpresaDTO(int id, String razonSocial, String pais, String archivo) {
-        this.id = id;
+    public EmpresaDTO(int idEmpresa, String razonSocial, String direccionFiscal, String pais) {
+        this.idEmpresa = idEmpresa;
         this.razonSocial = razonSocial;
+        this.direccionFiscal = direccionFiscal;
         this.pais = pais;
-        this.archivo = archivo;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
-
-    public String getRazonSocial() { return razonSocial; }
-    public void setRazonSocial(String razonSocial) { this.razonSocial = razonSocial; }
-
-    public String getPais() { return pais; }
-    public void setPais(String pais) { this.pais = pais; }
-
-    public String getArchivo() { return archivo; }
-    public void setArchivo(String archivo) { this.archivo = archivo; }
+    // Getters y setters
 }

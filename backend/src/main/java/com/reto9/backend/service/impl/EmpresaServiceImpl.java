@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -16,21 +18,33 @@ public class EmpresaServiceImpl implements EmpresaService {
     private final EmpresaRepository empresaRepository;
 
     @Override
-    public List<EmpresaDTO> getAll() {
-        return empresaRepository.findAll()
-                .stream()
+    public List<EmpresaDTO> findAllDTO() {
+        return empresaRepository.findAll().stream()
                 .map(e -> new EmpresaDTO(
-                        e.getId(),
+                        e.getIdEmpresa(),
                         e.getRazonSocial(),
-                        e.getPais(),
-                        e.getArchivo()
-                ))
-                .toList();
+                        e.getDireccionFiscal(),
+                        e.getPais()))
+                .collect(Collectors.toList());
     }
 
     @Override
-    public EmpresaDTO getById(Long id) {
-        Empresa e = empresaRepository.findById(id).orElseThrow();
-        return new EmpresaDTO(e.getId(), e.getRazonSocial(), e.getPais(), e.getArchivo());
+    public List<Empresa> findAll() {
+        return empresaRepository.findAll();
+    }
+
+    @Override
+    public Optional<Empresa> findById(int idEmpresa) {
+        return empresaRepository.findById(idEmpresa);
+    }
+
+    @Override
+    public Empresa save(Empresa empresa) {
+        return empresaRepository.save(empresa);
+    }
+
+    @Override
+    public void deleteById(int idEmpresa) {
+        empresaRepository.deleteById(idEmpresa);
     }
 }

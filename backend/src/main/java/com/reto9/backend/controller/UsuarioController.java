@@ -16,6 +16,16 @@ public class UsuarioController {
 
     @GetMapping
     public List<UsuarioDTO> getAll() {
-        return usuarioService.getAllUsuariosDTO();
+        return usuarioService.findAllDTO();
+    }
+
+    @DeleteMapping("/{username}")
+    public void eliminarUsuario(@PathVariable String username) {
+        usuarioService.deleteByUsername(username);
+    }
+
+    @PutMapping("/deshabilitar/{username}")
+    public void deshabilitarUsuario(@PathVariable String username) {
+        usuarioService.deshabilitarUsuario(username);
     }
 }
