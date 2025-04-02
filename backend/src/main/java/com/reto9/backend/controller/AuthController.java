@@ -1,71 +1,48 @@
 package com.reto9.backend.controller;
 
-import com.reto9.backend.dto.AuthRequest;
-import com.reto9.backend.dto.AuthResponse;
 import com.reto9.backend.model.Usuario;
+import com.reto9.backend.repository.UsuarioRepository;
 import com.reto9.backend.security.JwtUtil;
-import com.reto9.backend.service.UsuarioPerfilService;
-import com.reto9.backend.service.UsuarioService;
+import com.reto9.backend.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.*;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AuthController {
 
-    private final UsuarioService usuarioService;
-    private final UsuarioPerfilService usuarioPerfilService;
-    private final PasswordEncoder passwordEncoder;
+    private final AuthenticationManager authManager;
+    private final CustomUserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder encoder;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody AuthRequest request) {
-        Optional<Usuario> optional = usuarioService.findByUsername(request.getUsername());
+    public Map<String, String> login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
 
-        if (optional.isEmpty()) {
-            return ResponseEntity.status(401).body("Usuario no encontrado");
-        }
+        authManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-        Usuario usuario = optional.get();
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String token = jwtUtil.generateToken(userDetails.getUsername());
 
-        if (usuario.getEnabled() != 1) {
-            return ResponseEntity.status(403).body("Usuario deshabilitado");
-        }
-
-        if (!passwordEncoder.matches(request.getPassword(), usuario.getPassword())) {
-            return ResponseEntity.status(401).body("Contraseña incorrecta");
-        }
-
-        String role = usuarioPerfilService.findByUsername(usuario.getUsername())
-                .stream()
-                .map(up -> "ROLE_" + up.getIdPerfil()+up.getUsername().toUpperCase()) // ✅ Aquí sí tienes acceso a Perfil
-                .findFirst()
-                .orElse("ROLE_USUARIO");
-
-
-
-
-        String token = jwtUtil.generarToken(usuario.getUsername(), role);
-        return ResponseEntity.ok(new AuthResponse(token));
+        return Map.of("token", token);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Usuario usuario) {
-        if (usuarioService.findByUsername(usuario.getUsername()).isPresent()) {
-            return ResponseEntity.badRequest().body("El usuario ya existe");
-        }
-
-        usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
-        usuario.setFechaRegistro(new Date());
+    public Map<String, String> register(@RequestBody Usuario usuario) {
+        usuario.setPassword(encoder.encode(usuario.getPassword()));
         usuario.setEnabled(1);
-
-        usuarioService.save(usuario);
-        return ResponseEntity.ok("Usuario registrado correctamente");
+        usuario.setFechaRegistro(new Date());
+        usuarioRepository.save(usuario);
+        return Map.of("message", "Usuario registrado");
     }
 }

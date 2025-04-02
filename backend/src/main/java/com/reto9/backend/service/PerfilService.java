@@ -1,14 +1,13 @@
 package com.reto9.backend.service;
 
 import com.reto9.backend.dto.PerfilDTO;
-import com.reto9.backend.model.Perfil;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface PerfilService {
-    List<PerfilDTO> findAllDTO();
-    Perfil save(Perfil perfil);
-    Optional<Perfil> findById(int idPerfil);
-    void deleteById(int idPerfil);
+    List<PerfilDTO> findAll();
+    PerfilDTO findById(Integer id);
+    PerfilDTO save(PerfilDTO dto);
+    PerfilDTO update(Integer id, PerfilDTO dto);
+    void delete(Integer id);
 }

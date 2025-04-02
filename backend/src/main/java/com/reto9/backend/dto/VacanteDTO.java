@@ -1,22 +1,24 @@
 package com.reto9.backend.dto;
 
-import com.reto9.backend.model.EstatusVacante;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class VacanteDTO {
-    private int idVacante;
-    private double salario;
-    private String descripcion;
-    private String imagenVacante;
+
+    private Integer idVacante;
     private String nombre;
-    private EstatusVacante estatus;
-    private int idEmpresa;
-    private int idCategoria;
-    private int destacado;
+    private String descripcion;
     private Date fecha;
-
-
+    private Double salario;
+    private String estatus;
+    private boolean destacado;
+    private String imagen;
+    private String detalles;
+    private Integer idCategoria;
+    private Integer idEmpresa;
 }

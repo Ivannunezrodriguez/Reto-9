@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface VacanteRepository extends JpaRepository<Vacante, Integer> {
-    List<Vacante> findByEstado(String estatus);
+    List<Vacante> findByEstatus(Vacante.EstatusVacante estatus);
+    List<Vacante> findByIdEmpresa(Integer idEmpresa);
 }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface UsuarioPerfilRepository extends JpaRepository<UsuarioPerfil, Integer> {
-    List<UsuarioPerfil> findByUsuarioUsername(String username);
+    List<UsuarioPerfil> findByUsername(String username);
 }

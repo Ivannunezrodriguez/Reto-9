@@ -1,33 +1,38 @@
 package com.reto9.backend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
 
 @Entity
 @Table(name = "solicitudes")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Solicitud {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_solicitud")
-    private int idSolicitud;
-
-    private String comentarios;
+    @Column(name = "id_solicitud")
+    private Integer idSolicitud;
 
     @Temporal(TemporalType.DATE)
     private Date fecha;
 
-    private String estado;
+    @Column(length = 250)
     private String archivo;
 
-    @ManyToOne
-    @JoinColumn(name = "username")
-    private Usuario usuario;
+    @Column(length = 2000)
+    private String comentarios;
 
-    @ManyToOne
-    @JoinColumn(name = "id_vacante")
-    private Vacante vacante;
+    // Estado: 0 (pendiente), 1 (adjudicada), 2 (cancelada)
+    private Integer estado;
+
+    @Column(name = "id_vacante")
+    private Integer idVacante;
+
+    @Column(length = 45)
+    private String username;
 }

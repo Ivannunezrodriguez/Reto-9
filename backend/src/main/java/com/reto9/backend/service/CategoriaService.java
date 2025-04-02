@@ -1,15 +1,13 @@
-// CategoriaService.java
-package com.reto9.service;
+package com.reto9.backend.service;
 
-import com.reto9.dto.CategoriaDTO;
-import com.reto9.dto.CategoriaRequestDTO;
+import com.reto9.backend.dto.CategoriaDTO;
 
 import java.util.List;
 
 public interface CategoriaService {
     List<CategoriaDTO> findAll();
     CategoriaDTO findById(Integer id);
-    CategoriaDTO save(CategoriaRequestDTO dto);
-    CategoriaDTO update(Integer id, CategoriaRequestDTO dto);
+    CategoriaDTO save(CategoriaDTO dto);
+    CategoriaDTO update(Integer id, CategoriaDTO dto);
     void delete(Integer id);
 }

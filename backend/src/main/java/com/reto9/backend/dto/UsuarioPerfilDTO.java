@@ -1,20 +1,13 @@
 package com.reto9.backend.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UsuarioPerfilDTO {
-    private int id;
+    private Integer idUsuarioPerfil;
     private String username;
-    private int idPerfil;
-
-    public UsuarioPerfilDTO(int id, String username, int idPerfil) {
-        this.id = id;
-        this.username = username;
-        this.idPerfil = idPerfil;
-    }
-
-
+    private Integer idPerfil;
 }

@@ -1,17 +1,12 @@
 package com.reto9.backend.dto;
-import lombok.Getter;
-import lombok.Setter;
 
-@Getter
-@Setter
+import lombok.*;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class PerfilDTO {
-    private int idPerfil;
-    private String nombre;
-
-    public PerfilDTO(int idPerfil, String nombre) {
-        this.idPerfil = idPerfil;
-        this.nombre = nombre;
-    }
-
-    // Getters y setters
+    private Integer idPerfil;
+    private String tipo;
 }

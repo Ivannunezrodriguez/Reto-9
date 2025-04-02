@@ -1,33 +1,38 @@
 package com.reto9.backend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Table(name = "usuarios")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Usuario {
 
     @Id
+    @Column(length = 45)
     private String username;
 
+    @Column(length = 45, nullable = false)
     private String nombre;
+
+    @Column(length = 100)
     private String apellidos;
+
+    @Column(length = 100)
     private String email;
+
+    @Column(length = 100, nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    private int enabled;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "fecha_registro")
     private Date fechaRegistro;
-
-    private int enabled;
-
-    @OneToMany(mappedBy = "usuario")
-    private List<Solicitud> solicitudes;
-
-    @OneToMany(mappedBy = "usuario")
-    private List<UsuarioPerfil> perfiles;
 }

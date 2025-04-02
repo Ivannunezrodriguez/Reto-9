@@ -1,44 +1,44 @@
-// CategoriaController.java
-package com.reto9.controller;
+package com.reto9.backend.controller;
 
-import com.reto9.dto.CategoriaDTO;
-import com.reto9.dto.CategoriaRequestDTO;
-import com.reto9.service.CategoriaService;
-import jakarta.validation.Valid;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.reto9.backend.dto.CategoriaDTO;
+import com.reto9.backend.service.CategoriaService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/categorias")
+@RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class CategoriaController {
 
-    @Autowired
-    private CategoriaService categoriaService;
+    private final CategoriaService categoriaService;
 
     @GetMapping
-    public List<CategoriaDTO> getAll() {
-        return categoriaService.findAll();
+    public ResponseEntity<List<CategoriaDTO>> getAll() {
+        return ResponseEntity.ok(categoriaService.findAll());
     }
 
     @GetMapping("/{id}")
-    public CategoriaDTO getById(@PathVariable Integer id) {
-        return categoriaService.findById(id);
+    public ResponseEntity<CategoriaDTO> getOne(@PathVariable Integer id) {
+        return ResponseEntity.ok(categoriaService.findById(id));
     }
 
     @PostMapping
-    public CategoriaDTO create(@Valid @RequestBody CategoriaRequestDTO dto) {
-        return categoriaService.save(dto);
+    public ResponseEntity<CategoriaDTO> create(@RequestBody CategoriaDTO dto) {
+        return ResponseEntity.ok(categoriaService.save(dto));
     }
 
     @PutMapping("/{id}")
-    public CategoriaDTO update(@PathVariable Integer id, @Valid @RequestBody CategoriaRequestDTO dto) {
-        return categoriaService.update(id, dto);
+    public ResponseEntity<CategoriaDTO> update(@PathVariable Integer id, @RequestBody CategoriaDTO dto) {
+        return ResponseEntity.ok(categoriaService.update(id, dto));
     }
-
-    @DeleteMapping("/{id}")
-    public void delete(@PathVariable Integer id) {
-        categoriaService.delete(id);
-    }
+// al tener depdendecias no de permite borrar
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+//        categoriaService.delete(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

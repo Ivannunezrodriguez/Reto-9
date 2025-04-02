@@ -1,29 +1,19 @@
 package com.reto9.backend.dto;
 
+import lombok.*;
+
 import java.util.Date;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class SolicitudDTO {
-    private int idSolicitud;
-    private String comentarios;
+    private Integer idSolicitud;
     private Date fecha;
-    private String estado;
-    private String username;
-    private int vacante;
     private String archivo;
-
-    public SolicitudDTO(int idSolicitud, String comentarios, Date fecha, String estado, String username, int vacante , String archivo) {
-        this.idSolicitud = idSolicitud;
-        this.comentarios = comentarios;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.username = username;
-        this.vacante = vacante;
-        this.archivo = archivo;
-    }
-
+    private String comentarios;
+    private Integer estado;
+    private Integer idVacante;
+    private String username;
 }

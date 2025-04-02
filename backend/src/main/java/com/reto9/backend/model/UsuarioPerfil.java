@@ -1,22 +1,24 @@
 package com.reto9.backend.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 @Entity
-@Table(name = "usuario_perfil")
+@Table(name = "usuarioperfil")
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UsuarioPerfil {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @Column(name = "id")
+    private Integer idUsuarioPerfil;
 
-    @ManyToOne
-    @JoinColumn(name = "username")
-    private Usuario usuario;
+    @Column(length = 45)
+    private String username;
 
-    @ManyToOne
-    @JoinColumn(name = "id_perfil")
-    private Perfil perfil;
+    @Column(name = "id_perfil")
+    private Integer idPerfil;
 }

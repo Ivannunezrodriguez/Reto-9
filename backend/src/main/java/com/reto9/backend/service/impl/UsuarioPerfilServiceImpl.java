@@ -17,18 +17,42 @@ public class UsuarioPerfilServiceImpl implements UsuarioPerfilService {
     private final UsuarioPerfilRepository usuarioPerfilRepository;
 
     @Override
-    public List<UsuarioPerfilDTO> findByUsername(String username) {
-        return usuarioPerfilRepository.findByUsuarioUsername(username)
-                .stream()
-                .map(up -> new UsuarioPerfilDTO(
-                        up.getId(),
-                        up.getUsuario().getUsername(),
-                        up.getPerfil().getIdPerfil()))
+    public List<UsuarioPerfilDTO> findAll() {
+        return usuarioPerfilRepository.findAll().stream()
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public UsuarioPerfil save(UsuarioPerfil usuarioPerfil) {
-        return usuarioPerfilRepository.save(usuarioPerfil);
+    public List<UsuarioPerfilDTO> findByUsername(String username) {
+        return usuarioPerfilRepository.findByUsername(username).stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public UsuarioPerfilDTO save(UsuarioPerfilDTO dto) {
+        return toDTO(usuarioPerfilRepository.save(toEntity(dto)));
+    }
+
+    @Override
+    public void delete(Integer id) {
+        usuarioPerfilRepository.deleteById(id);
+    }
+
+    private UsuarioPerfilDTO toDTO(UsuarioPerfil u) {
+        return UsuarioPerfilDTO.builder()
+                .idUsuarioPerfil(u.getIdUsuarioPerfil())
+                .username(u.getUsername())
+                .idPerfil(u.getIdPerfil())
+                .build();
+    }
+
+    private UsuarioPerfil toEntity(UsuarioPerfilDTO dto) {
+        return UsuarioPerfil.builder()
+                .idUsuarioPerfil(dto.getIdUsuarioPerfil())
+                .username(dto.getUsername())
+                .idPerfil(dto.getIdPerfil())
+                .build();
     }
 }

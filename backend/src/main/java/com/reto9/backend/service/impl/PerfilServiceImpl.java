@@ -8,7 +8,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -18,24 +17,45 @@ public class PerfilServiceImpl implements PerfilService {
     private final PerfilRepository perfilRepository;
 
     @Override
-    public List<PerfilDTO> findAllDTO() {
+    public List<PerfilDTO> findAll() {
         return perfilRepository.findAll().stream()
-                .map(p -> new PerfilDTO(p.getIdPerfil(), p.getNombre()))
+                .map(this::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public Perfil save(Perfil perfil) {
-        return perfilRepository.save(perfil);
+    public PerfilDTO findById(Integer id) {
+        return perfilRepository.findById(id).map(this::toDTO).orElse(null);
     }
 
     @Override
-    public Optional<Perfil> findById(int idPerfil) {
-        return perfilRepository.findById(idPerfil);
+    public PerfilDTO save(PerfilDTO dto) {
+        return toDTO(perfilRepository.save(toEntity(dto)));
     }
 
     @Override
-    public void deleteById(int idPerfil) {
-        perfilRepository.deleteById(idPerfil);
+    public PerfilDTO update(Integer id, PerfilDTO dto) {
+        Perfil perfil = perfilRepository.findById(id).orElseThrow();
+        perfil.setTipo(dto.getTipo());
+        return toDTO(perfilRepository.save(perfil));
+    }
+
+    @Override
+    public void delete(Integer id) {
+        perfilRepository.deleteById(id);
+    }
+
+    private PerfilDTO toDTO(Perfil perfil) {
+        return PerfilDTO.builder()
+                .idPerfil(perfil.getIdPerfil())
+                .tipo(perfil.getTipo())
+                .build();
+    }
+
+    private Perfil toEntity(PerfilDTO dto) {
+        return Perfil.builder()
+                .idPerfil(dto.getIdPerfil())
+                .tipo(dto.getTipo())
+                .build();
     }
 }

@@ -1,9 +1,9 @@
 package com.reto9.backend.controller;
 
 import com.reto9.backend.dto.PerfilDTO;
-import com.reto9.backend.model.Perfil;
 import com.reto9.backend.service.PerfilService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,27 +11,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/perfiles")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class PerfilController {
 
     private final PerfilService perfilService;
 
     @GetMapping
-    public List<PerfilDTO> getAll() {
-        return perfilService.findAllDTO();
+    public ResponseEntity<List<PerfilDTO>> getAll() {
+        return ResponseEntity.ok(perfilService.findAll());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<PerfilDTO> getOne(@PathVariable Integer id) {
+        return ResponseEntity.ok(perfilService.findById(id));
     }
 
     @PostMapping
-    public Perfil crear(@RequestBody Perfil perfil) {
-        return perfilService.save(perfil);
+    public ResponseEntity<PerfilDTO> create(@RequestBody PerfilDTO dto) {
+        return ResponseEntity.ok(perfilService.save(dto));
     }
 
-    @PutMapping
-    public Perfil actualizar(@RequestBody Perfil perfil) {
-        return perfilService.save(perfil);
+    @PutMapping("/{id}")
+    public ResponseEntity<PerfilDTO> update(@PathVariable Integer id, @RequestBody PerfilDTO dto) {
+        return ResponseEntity.ok(perfilService.update(id, dto));
     }
 
     @DeleteMapping("/{id}")
-    public void eliminar(@PathVariable int idPerfil) {
-        perfilService.deleteById(idPerfil);
+    public ResponseEntity<Void> delete(@PathVariable Integer id) {
+        perfilService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
