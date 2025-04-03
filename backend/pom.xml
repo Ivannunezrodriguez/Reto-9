@@ -137,6 +137,12 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	<!-- API Java RMI - ya viene con Java, pero por si acaso -->
+	<dependency>
+		<groupId>javax.annotation</groupId>
+		<artifactId>javax.annotation-api</artifactId>
+		<version>1.3.2</version>
+	</dependency>
 
 	<!-- Plugin de Spring Boot para empaquetar en .jar ejecutable -->
 	<build>

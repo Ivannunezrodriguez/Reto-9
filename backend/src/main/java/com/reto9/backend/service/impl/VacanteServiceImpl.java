@@ -5,6 +5,7 @@ import com.reto9.backend.model.Vacante;
 import com.reto9.backend.repository.VacanteRepository;
 import com.reto9.backend.service.VacanteService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,11 +16,15 @@ import java.util.stream.Collectors;
  * Proporciona las operaciones CRUD y funciones específicas de negocio como creación, cancelación o filtrado por estado o empresa.
  */
 @Service
-@RequiredArgsConstructor
+
 public class VacanteServiceImpl implements VacanteService {
 
     private final VacanteRepository vacanteRepository;
 
+    @Autowired
+    public VacanteServiceImpl(VacanteRepository vacanteRepository) {
+        this.vacanteRepository = vacanteRepository;
+    }
     /**
      * Crea una nueva vacante en estado "CREADA".
      * @param dto Objeto con los datos de la vacante a registrar.

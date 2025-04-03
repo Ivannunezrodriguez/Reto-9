@@ -1,30 +1,28 @@
 package com.reto9.backend;
 
+import com.reto9.backend.service.VacanteService;
+import com.reto9.backend.rmiserver.RMIServer;
+import com.reto9.backend.service.impl.VacanteServiceImpl;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ConfigurableApplicationContext;
 
 /**
  * Clase principal que lanza la aplicación Spring Boot para el proyecto Reto 9.
- *
- * <p>Esta clase actúa como el punto de entrada de la aplicación.
- * Contiene el método {@code main}, que inicia el contexto de Spring y configura todos los componentes.
- *
- * <p>Gracias a la anotación {@link SpringBootApplication}, se habilitan automáticamente:
- * <ul>
- *     <li>La configuración automática de Spring (auto-configuration).</li>
- *     <li>El escaneo de componentes en el paquete base y sus subpaquetes.</li>
- *     <li>La posibilidad de definir Beans adicionales si se necesitan.</li>
- * </ul>
  */
 @SpringBootApplication
 public class Reto9Application {
 
 	/**
-	 * Método principal que arranca la aplicación Spring Boot.
+	 * Método principal que arranca la aplicación Spring Boot y el servidor RMI.
 	 *
 	 * @param args Argumentos de línea de comandos.
 	 */
 	public static void main(String[] args) {
-		SpringApplication.run(Reto9Application.class, args);
+		// Inicia el contexto de Spring Boot
+		ConfigurableApplicationContext context = SpringApplication.run(Reto9Application.class, args);
+		// Configura el servicio y lanza el servidor RMI
+		RMIServer rmiServer = context.getBean(RMIServer.class);
+		rmiServer.start();
 	}
 }

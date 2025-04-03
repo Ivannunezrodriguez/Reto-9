@@ -2,6 +2,7 @@ package com.reto9.backend.dto;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -12,7 +13,8 @@ import java.util.Date;
 @NoArgsConstructor // Constructor sin argumentos requerido por frameworks como Jackson.
 @AllArgsConstructor // Constructor con todos los campos.
 @Builder // Permite construir instancias de forma fluida.
-public class VacanteDTO {
+public class VacanteDTO implements Serializable {
+    private static final long serialVersionUID = 1L ;
 
     /**
      * Identificador único de la vacante.
