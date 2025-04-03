@@ -1,7 +1,9 @@
 package com.reto9.backend.controller;
 
-
+import com.reto9.backend.dto.UsuarioDTO;
+import com.reto9.backend.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,19 +11,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuarios")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class UsuarioController {
 
-    private final com.reto9.backend.repository.UsuarioRepository usuarioRepository;
+    private final UsuarioService usuarioService;
 
     @GetMapping
-    public List<com.reto9.backend.model.Usuario> getAll() {
-        return usuarioRepository.findAll();
+    public ResponseEntity<List<UsuarioDTO>> getAll() {
+        return ResponseEntity.ok(usuarioService.findAll());
     }
 
-    @PutMapping("/{username}/baja")
-    public com.reto9.backend.model.Usuario darDeBaja(@PathVariable String username) {
-        com.reto9.backend.model.Usuario usuario = usuarioRepository.findByUsername(username).orElseThrow();
-        usuario.setEnabled(0);
-        return usuarioRepository.save(usuario);
+    @GetMapping("/{username}")
+    public ResponseEntity<UsuarioDTO> getOne(@PathVariable String username) {
+        return ResponseEntity.ok(usuarioService.findByUsername(username));
+    }
+
+    @PostMapping
+    public ResponseEntity<UsuarioDTO> create(@RequestBody UsuarioDTO dto) {
+        return ResponseEntity.ok(usuarioService.save(dto));
+    }
+
+    @PutMapping("/{username}")
+    public ResponseEntity<UsuarioDTO> update(@PathVariable String username, @RequestBody UsuarioDTO dto) {
+        return ResponseEntity.ok(usuarioService.update(username, dto));
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<Void> disable(@PathVariable String username) {
+        usuarioService.disable(username);
+        return ResponseEntity.noContent().build();
     }
 }

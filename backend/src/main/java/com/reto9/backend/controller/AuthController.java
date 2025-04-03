@@ -1,32 +1,48 @@
 package com.reto9.backend.controller;
 
-import com.reto9.backend.dto.AuthRequest;
-import com.reto9.backend.dto.AuthResponse;
-import com.reto9.backend.security.JwtService;
+import com.reto9.backend.model.Usuario;
+import com.reto9.backend.repository.UsuarioRepository;
+import com.reto9.backend.security.JwtUtil;
+import com.reto9.backend.security.CustomUserDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
+import org.springframework.security.authentication.*;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*")
 public class AuthController {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+    private final AuthenticationManager authManager;
+    private final CustomUserDetailsService userDetailsService;
+    private final JwtUtil jwtUtil;
+    private final UsuarioRepository usuarioRepository;
+    private final PasswordEncoder encoder;
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest authRequest) {
-        Authentication auth = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword())
-        );
+    public Map<String, String> login(@RequestBody Map<String, String> body) {
+        String username = body.get("username");
+        String password = body.get("password");
 
-        UserDetails user = (UserDetails) auth.getPrincipal();
-        String token = jwtService.generateToken(user);
+        authManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
 
-        return new AuthResponse(token);
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        String token = jwtUtil.generateToken(userDetails.getUsername());
+
+        return Map.of("token", token);
+    }
+
+    @PostMapping("/register")
+    public Map<String, String> register(@RequestBody Usuario usuario) {
+        usuario.setPassword(encoder.encode(usuario.getPassword()));
+        usuario.setEnabled(1);
+        usuario.setFechaRegistro(new Date());
+        usuarioRepository.save(usuario);
+        return Map.of("message", "Usuario registrado");
     }
 }

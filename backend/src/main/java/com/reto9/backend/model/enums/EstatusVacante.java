@@ -1,4 +1,4 @@
-package com.reto9.backend.model;
+package com.reto9.backend.model.enums;
 
 public enum EstatusVacante {
     CREADA,

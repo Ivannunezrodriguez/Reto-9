@@ -1,71 +1,68 @@
+-- ESTRUCTURA DEFINITIVA ADAPTADA AL DER FINAL
+CREATE DATABASE IF NOT EXISTS reto9_db;
+USE reto9_db;
 
--- Tabla: Empresas
-CREATE TABLE Empresas (
-    id_empresa INT PRIMARY KEY AUTO_INCREMENT,
-    razon_social VARCHAR(45),
-    nombre_fiscal VARCHAR(45),
-    pais VARCHAR(45)
+CREATE TABLE IF NOT EXISTS categorias (
+    id_categoria INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    descripcion TEXT
 );
 
--- Tabla: Categorias
-CREATE TABLE Categorias (
-    id_categoria INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100),
-    descripcion VARCHAR(2000)
+CREATE TABLE IF NOT EXISTS empresas (
+    id_empresa INT AUTO_INCREMENT PRIMARY KEY,
+    razon_social VARCHAR(100) NOT NULL,
+    direccion_fiscal VARCHAR(255),
+    pais VARCHAR(100)
 );
 
--- Tabla: Vacantes
-CREATE TABLE Vacantes (
-    id_vacante INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(200),
-    descripcion TEXT,
-    fecha DATE,
-    salario DOUBLE,
-    estatus ENUM('CREADA', 'CANCELADA', 'ASIGNADA'),
-    destacado TINYINT,
-    imagen_vacante VARCHAR(250),
-    detalles TEXT,
-    id_categoria INT,
-    id_empresa INT,
-    FOREIGN KEY (id_categoria) REFERENCES Categorias(id_categoria),
-    FOREIGN KEY (id_empresa) REFERENCES Empresas(id_empresa)
-);
-
--- Tabla: Usuarios
-CREATE TABLE Usuarios (
-    username VARCHAR(45) PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS usuarios (
+    username VARCHAR(50) PRIMARY KEY,
     nombre VARCHAR(100),
     apellidos VARCHAR(100),
     email VARCHAR(100),
-    password VARCHAR(100),
-    enabled TINYINT,
+    password VARCHAR(255),
+    enabled INT,
     fecha_registro DATE
 );
 
--- Tabla: Perfiles
-CREATE TABLE Perfiles (
-    id_perfil INT PRIMARY KEY AUTO_INCREMENT,
-    nombre VARCHAR(100)
+CREATE TABLE IF NOT EXISTS perfiles (
+    id_perfil INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50)
 );
 
--- Tabla: UsuarioPerfil
-CREATE TABLE UsuarioPerfil (
-    username VARCHAR(45),
+CREATE TABLE IF NOT EXISTS usuarioPerfil (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50),
     id_perfil INT,
-    PRIMARY KEY (username, id_perfil),
-    FOREIGN KEY (username) REFERENCES Usuarios(username),
-    FOREIGN KEY (id_perfil) REFERENCES Perfiles(id_perfil)
+    FOREIGN KEY (username) REFERENCES usuarios(username),
+    FOREIGN KEY (id_perfil) REFERENCES perfiles(id_perfil)
 );
 
--- Tabla: Solicitudes
-CREATE TABLE Solicitudes (
-    id_solicitud INT PRIMARY KEY AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS vacantes (
+    id_vacante INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100),
+    descripcion TEXT,
+    ubicacion VARCHAR(100),
+    salario DOUBLE,
+    estatus VARCHAR(20),
+    destacada TINYINT(1),
     fecha DATE,
-    archivo VARCHAR(250),
-    comentarios VARCHAR(2000),
-    estado TINYINT,
+    imagen VARCHAR(255),
+    detalles TEXT,
+    id_empresa INT,
+    id_categoria INT,
+    FOREIGN KEY (id_empresa) REFERENCES empresas(id_empresa),
+    FOREIGN KEY (id_categoria) REFERENCES categorias(id_categoria)
+);
+
+CREATE TABLE IF NOT EXISTS solicitudes (
+    id_solicitud INT AUTO_INCREMENT PRIMARY KEY,
+    fecha DATE,
+    archivo VARCHAR(255),
+    comentarios TEXT,
+    estado INT,
     id_vacante INT,
-    username VARCHAR(45),
-    FOREIGN KEY (id_vacante) REFERENCES Vacantes(id_vacante),
-    FOREIGN KEY (username) REFERENCES Usuarios(username)
+    username VARCHAR(50),
+    FOREIGN KEY (id_vacante) REFERENCES vacantes(id_vacante),
+    FOREIGN KEY (username) REFERENCES usuarios(username)
 );

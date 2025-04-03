@@ -8,11 +8,14 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Perfil {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_perfil")
     private Integer idPerfil;
 
-    private String nombre; // Ejemplo: "ADMIN", "USUARIO"
+    @Column(name="nombre")
+    private String tipo;
 }

@@ -4,24 +4,21 @@ import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
-@Table(name = "usuario_perfil")
+@Table(name = "usuarioperfil")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@IdClass(UsuarioPerfilId.class)
+@Builder
 public class UsuarioPerfil {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer idUsuarioPerfil;
+
+    @Column(length = 45)
     private String username;
 
-    @Id
+    @Column(name = "id_perfil")
     private Integer idPerfil;
-
-    @ManyToOne
-    @JoinColumn(name = "username", insertable = false, updatable = false)
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(name = "id_perfil", insertable = false, updatable = false)
-    private Perfil perfil;
 }

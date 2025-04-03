@@ -1,0 +1,67 @@
+
+@startuml
+entity Categoria {
+  * id_categoria : int
+  * nombre : String
+  * descripcion : String
+}
+
+entity Empresa {
+  * id_empresa : int
+  * razon_social : String
+  * direccion_fiscal : String
+  * pais : String
+}
+
+entity Usuario {
+  * username : String
+  * nombre : String
+  * apellidos : String
+  * email : String
+  * password : String
+  * enabled : int
+  * fecha_registro : Date
+}
+
+entity Perfil {
+  * id_perfil : int
+  * nombre : String
+}
+
+entity UsuarioPerfil {
+  * id : int
+  * username : FK
+  * id_perfil : FK
+}
+
+entity Vacante {
+  * id_vacante : int
+  * nombre : String
+  * descripcion : String
+  * ubicacion : String
+  * salario : Double
+  * estatus : String
+  * fecha : Date
+  * imagen : String
+  * detalles : Text
+  * id_empresa : FK
+  * id_categoria : FK
+}
+
+entity Solicitud {
+  * id_solicitud : int
+  * fecha : Date
+  * archivo : String
+  * comentarios : String
+  * estado : int
+  * id_vacante : FK
+  * username : FK
+}
+
+Categoria ||--o{ Vacante : contiene
+Empresa ||--o{ Vacante : publica
+Usuario ||--o{ Solicitud : genera
+Usuario ||--o{ UsuarioPerfil : tiene
+Perfil ||--o{ UsuarioPerfil : asigna
+Vacante ||--o{ Solicitud : recibe
+@enduml

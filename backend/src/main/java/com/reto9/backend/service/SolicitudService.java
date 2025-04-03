@@ -1,16 +1,15 @@
 package com.reto9.backend.service;
 
-
-import com.reto9.backend.model.Solicitud;
+import com.reto9.backend.dto.SolicitudDTO;
 
 import java.util.List;
 
 public interface SolicitudService {
-    List<Solicitud> findAll();
-
-    Solicitud save(Solicitud solicitud);
-
-    Solicitud update(Integer id, Solicitud solicitud);
-
-    void delete(Integer id);
+    SolicitudDTO create(SolicitudDTO dto);
+    List<SolicitudDTO> findAll();
+    List<SolicitudDTO> findByUsuario(String username);
+    List<SolicitudDTO> findByVacante(Integer idVacante);
+    SolicitudDTO adjudicar(Integer idSolicitud);
+    SolicitudDTO cancelar(Integer idSolicitud);
+    SolicitudDTO findById(Integer id);
 }
