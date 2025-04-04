@@ -10,6 +10,8 @@ import lombok.*;
 @Entity
 @Table(name = "empresas")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

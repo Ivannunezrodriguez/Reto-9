@@ -12,6 +12,8 @@ import java.util.Date;
 @Entity
 @Table(name = "usuarios")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

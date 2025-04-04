@@ -41,7 +41,10 @@
 	<!-- Versión de Java a utilizar -->
 	<properties>
 		<java.version>17</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
+
 
 	<dependencies>
 		<!-- =====================
@@ -101,11 +104,14 @@
              OTRAS LIBRERÍAS
              ===================== -->
 		<!-- Lombok para evitar boilerplate -->
+
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<optional>true</optional>
+			<version>1.18.32</version>
+			<scope>provided</scope>
 		</dependency>
+
 
 		<!-- Conector MySQL -->
 		<dependency>
@@ -136,22 +142,49 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-	</dependencies>
+
 	<!-- API Java RMI - ya viene con Java, pero por si acaso -->
 	<dependency>
 		<groupId>javax.annotation</groupId>
 		<artifactId>javax.annotation-api</artifactId>
 		<version>1.3.2</version>
 	</dependency>
-
+	</dependencies>
 	<!-- Plugin de Spring Boot para empaquetar en .jar ejecutable -->
 	<build>
 		<plugins>
+
+			<!-- Compilador Maven (para Java 17 y Lombok) -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>1.18.32</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+
+			<!-- Plugin Spring Boot (para generar JAR ejecutable) -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>3.4.4</version>
+				<configuration>
+					<mainClass>com.reto9.backend.Reto9Application</mainClass>
+				</configuration>
 			</plugin>
+
 		</plugins>
 	</build>
+
+
 
 </project>

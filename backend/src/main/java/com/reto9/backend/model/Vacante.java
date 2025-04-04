@@ -11,6 +11,8 @@ import java.util.Date;
 @Entity
 @Table(name = "vacantes")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder

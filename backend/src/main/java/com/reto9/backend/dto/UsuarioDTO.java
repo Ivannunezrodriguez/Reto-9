@@ -7,6 +7,7 @@ import java.util.Date;
  * DTO (Data Transfer Object) para representar a un usuario del sistema.
  * Se utiliza para transferir datos del usuario sin exponer entidades directamente.
  */
+
 @Data // Genera getters, setters, equals, hashCode y toString automáticamente.
 @NoArgsConstructor // Constructor sin argumentos.
 @AllArgsConstructor // Constructor con todos los atributos.

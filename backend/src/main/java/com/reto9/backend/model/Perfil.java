@@ -10,6 +10,8 @@ import lombok.*;
 @Entity
 @Table(name = "perfiles")
 @Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
