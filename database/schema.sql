@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS vacantes (
     ubicacion VARCHAR(100),
     salario DOUBLE,
     estatus VARCHAR(20),
-    destacada TINYINT(1),
+    destacado TINYINT(1),
     fecha DATE,
     imagen VARCHAR(255),
     detalles TEXT,
