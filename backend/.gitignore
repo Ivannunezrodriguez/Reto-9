@@ -1,5 +1,18 @@
 HELP.md
-target/
+
+
+# Ignorar todo target excepto JAR
+target/*
+!target/*.jar
+
+# Wrapper de Maven
+!.mvn/wrapper/maven-wrapper.jar
+
+# Otras reglas estándar...
+
+
+# Otras reglas estándar...
+
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
