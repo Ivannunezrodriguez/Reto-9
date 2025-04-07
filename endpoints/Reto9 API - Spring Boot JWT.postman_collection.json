@@ -1,0 +1,1500 @@
+{
+	"info": {
+		"_postman_id": "a835f853-9488-43bd-8b4b-2944397e3145",
+		"name": "Reto9 API - Spring Boot JWT",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41571233"
+	},
+	"item": [
+		{
+			"name": "usuario",
+			"item": [
+				{
+					"name": "Get Usuarios (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNDc0NCwiZXhwIjoxNzQzNzIxMTQ0fQ.KLyGg4zHWDwBVPdVQoFDcPHEMlEfbM95xe0EA-vuQWg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuarios por usuario (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNDU3NiwiZXhwIjoxNzQzNzIwOTc2fQ.EATUmkGYYYEMUUuSFuiKSEMYjgqA8h2qJHso7hkYImM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/user1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"user1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "port Usuarios  (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNDU3NiwiZXhwIjoxNzQzNzIwOTc2fQ.EATUmkGYYYEMUUuSFuiKSEMYjgqA8h2qJHso7hkYImM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user8\",\r\n    \"nombre\": \"Berta\",\r\n    \"apellidos\": \"Maza\",\r\n    \"email\": \"sandaliosevillano@mari.es\",\r\n    \"enabled\": 1,\r\n    \"fechaRegistro\": \"2025-02-28\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "desactivar por usuario (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNDU3NiwiZXhwIjoxNzQzNzIwOTc2fQ.EATUmkGYYYEMUUuSFuiKSEMYjgqA8h2qJHso7hkYImM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/user8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"user8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "actulizar por usuario (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNDU3NiwiZXhwIjoxNzQzNzIwOTc2fQ.EATUmkGYYYEMUUuSFuiKSEMYjgqA8h2qJHso7hkYImM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"user8\",\r\n    \"nombre\": \"Berta\",\r\n    \"apellidos\": \"Maza\",\r\n    \"email\": \"sandaliosevillano@mari.es\",\r\n    \"enabled\": 1,\r\n    \"fechaRegistro\": \"2025-02-28\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/user8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"user8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vacante",
+			"item": [
+				{
+					"name": "Get Vacantes (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNTgwMywiZXhwIjoxNzQzNzIyMjAzfQ.GSjvz16DoLO7p9ALNU5eHZmJrgjsFiMNCOBW2Dz4aSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacantes por id(protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNTgwMywiZXhwIjoxNzQzNzIyMjAzfQ.GSjvz16DoLO7p9ALNU5eHZmJrgjsFiMNCOBW2Dz4aSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacantes por empresa (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNTgwMywiZXhwIjoxNzQzNzIyMjAzfQ.GSjvz16DoLO7p9ALNU5eHZmJrgjsFiMNCOBW2Dz4aSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes/empresa/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes",
+								"empresa",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Vacantes creadas (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNTgwMywiZXhwIjoxNzQzNzIyMjAzfQ.GSjvz16DoLO7p9ALNU5eHZmJrgjsFiMNCOBW2Dz4aSI",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes/creadas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes",
+								"creadas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "pos Vacantes creada (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjI4MywiZXhwIjoxNzQzNzIyNjgzfQ.VXk3oxdwlxf7BM85zgzIy32b1YjQVM64FE15oyT2KCw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"idVacante\": 7,\r\n        \"nombre\": \"Media planner\",\r\n        \"descripcion\": \"Nisu incidunt ipsum. Enim accusamus quidem ipsum expedita eveniet autem.\",\r\n        \"fecha\": \"2025-03-24\",\r\n        \"salario\": 31215.0,\r\n        \"estatus\": \"CREADA\",\r\n        \"destacado\": false,\r\n        \"imagen\": \"https://placeimg.com/73/195/any\",\r\n        \"detalles\": \"Dolor eius placeat porro autem minima rem quis.\",\r\n        \"idCategoria\": 1,\r\n        \"idEmpresa\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put Vacantes actuliza por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjM1MSwiZXhwIjoxNzQzNzIyNzUxfQ.ySkf5J5V70QrraAXu7tGPBSOo84DGtG73Ok7VDDMNUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"idVacante\": 7,\r\n        \"nombre\": \"Media planner\",\r\n        \"descripcion\": \"Nisu incidunt ipsum. Enim accusamus quidem ipsum expedita eveniet autem.\",\r\n        \"fecha\": \"2025-03-24\",\r\n        \"salario\": 31211.0,\r\n        \"estatus\": \"CREADA\",\r\n        \"destacado\": false,\r\n        \"imagen\": \"https://placeimg.com/73/195/any\",\r\n        \"detalles\": \"Dolor eius placeat porro autem minima rem quis.\",\r\n        \"idCategoria\": 1,\r\n        \"idEmpresa\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes/7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put Vacantes cancelada (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjM1MSwiZXhwIjoxNzQzNzIyNzUxfQ.ySkf5J5V70QrraAXu7tGPBSOo84DGtG73Ok7VDDMNUo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n        \"idVacante\": 7,\r\n        \"nombre\": \"Media planner\",\r\n        \"descripcion\": \"Nisu incidunt ipsum. Enim accusamus quidem ipsum expedita eveniet autem.\",\r\n        \"fecha\": \"2025-03-24\",\r\n        \"salario\": 31211.0,\r\n        \"estatus\": \"CREADA\",\r\n        \"destacado\": false,\r\n        \"imagen\": \"https://placeimg.com/73/195/any\",\r\n        \"detalles\": \"Dolor eius placeat porro autem minima rem quis.\",\r\n        \"idCategoria\": 1,\r\n        \"idEmpresa\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/vacantes/7/cancelar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"vacantes",
+								"7",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "usuarioPerfil",
+			"item": [
+				{
+					"name": "Get Usuariosperfil (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyIxIl0sInN1YiI6InVzZXIxIiwiaWF0IjoxNzQzNTE3MTQwLCJleHAiOjE3NDM2MDM1NDB9.OJfxxG-Pyunr1pZtNY6J-OglGBbbqyaHd2v2dScV5rU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuario-perfil/user1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario-perfil",
+								"user1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Usuariosperfil por usuario (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjUxNiwiZXhwIjoxNzQzNzIyOTE2fQ.S-1ZXp7hR4zr6NyE00RN0qZbJqjJLLKfYIRu3qufEBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/usuario-perfiles/usuario/user1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario-perfiles",
+								"usuario",
+								"user1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "por Usuariosperfil creado (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjUxNiwiZXhwIjoxNzQzNzIyOTE2fQ.S-1ZXp7hR4zr6NyE00RN0qZbJqjJLLKfYIRu3qufEBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idUsuarioPerfil\": 1,\r\n        \"username\": \"user2\",\r\n        \"idPerfil\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuario-perfiles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario-perfiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Usuariosperfil por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjUxNiwiZXhwIjoxNzQzNzIyOTE2fQ.S-1ZXp7hR4zr6NyE00RN0qZbJqjJLLKfYIRu3qufEBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"idUsuarioPerfil\": 1,\r\n        \"username\": \"user2\",\r\n        \"idPerfil\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuario-perfiles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuario-perfiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "categoria",
+			"item": [
+				{
+					"name": "Get categorias (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiJdLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzUwMjczOCwiZXhwIjoxNzQzNTg5MTM4fQ.7FavS13wC7V1-2jjXUAz8b6GrHDLB6wX0xmrFclxckA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get categorias por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjUxNiwiZXhwIjoxNzQzNzIyOTE2fQ.S-1ZXp7hR4zr6NyE00RN0qZbJqjJLLKfYIRu3qufEBM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post categorias por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCategoria\": 3,\r\n    \"nombre\": \"Desarrolloo\",\r\n    \"descripcion\": \"Quibusdam id repudiandae optio placeat harum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post categorias creada (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   \r\n    \"nombre\": \"Desarrolloo\",\r\n    \"descripcion\": \"Quibusdam id repudiandae optio placeat harum.\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/categorias",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"categorias"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "empresa",
+			"item": [
+				{
+					"name": "Get empresas (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiJdLCJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzUwMjczOCwiZXhwIjoxNzQzNTg5MTM4fQ.7FavS13wC7V1-2jjXUAz8b6GrHDLB6wX0xmrFclxckA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/empresas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get empresas por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/empresas/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empresas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post empresas creada (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"razonSocial\": \"Mancebo-Durann\",\r\n    \"direccionFiscal\": \"Camino de Mario Doménech 57\\r\\nSalamanca, 51280\",\r\n    \"pais\": \"Italia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/empresas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empresas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put empresas actulizada(protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"razonSocial\": \"Mancebo-Duran\",\r\n    \"direccionFiscal\": \"Camino de Mario Doménech 57\\r\\nSalamanca, 51280\",\r\n    \"pais\": \"Italia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/empresas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empresas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete empresas eliminada(protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNjg3NywiZXhwIjoxNzQzNzIzMjc3fQ.6KYk0VvVTAytFR_sG_gJ9O2TFRzv1yu0PtbWNN5rw9M",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"razonSocial\": \"Mancebo-Duran\",\r\n    \"direccionFiscal\": \"Camino de Mario Doménech 57\\r\\nSalamanca, 51280\",\r\n    \"pais\": \"Italia\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/empresas/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"empresas",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "solicitud",
+			"item": [
+				{
+					"name": "Get solicitudes (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzQ1NSwiZXhwIjoxNzQzNzIzODU1fQ.9_mFq47ndwsrvYCd9PmISMa93f716HVh4nb56dGgyaM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get solicitudes por username (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzQ1NSwiZXhwIjoxNzQzNzIzODU1fQ.9_mFq47ndwsrvYCd9PmISMa93f716HVh4nb56dGgyaM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes/usuario/user1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes",
+								"usuario",
+								"user1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get solicitudes por vacante id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzQ1NSwiZXhwIjoxNzQzNzIzODU1fQ.9_mFq47ndwsrvYCd9PmISMa93f716HVh4nb56dGgyaM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes/vacante/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes",
+								"vacante",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get solicitudes por id (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzQ1NSwiZXhwIjoxNzQzNzIzODU1fQ.9_mFq47ndwsrvYCd9PmISMa93f716HVh4nb56dGgyaM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put solicitudes estado cancelado (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes/3/cancelar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes",
+								"3",
+								"cancelar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put solicitudes estado adjudicado (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/solicitudes/3/adjudicar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"solicitudes",
+								"3",
+								"adjudicar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "perfil",
+			"item": [
+				{
+					"name": "Get perfiles (protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/perfiles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"perfiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get perfiles por id(protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8080/api/perfiles/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"perfiles",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post perfiles creado protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \r\n    \"tipo\": \"ADMINn\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/perfiles",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"perfiles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "put perfiles actulizado protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"tipo\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/perfiles/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"perfiles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete perfiles eliminado protegido)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1c2VyMSIsImlhdCI6MTc0MzYzNzg0OCwiZXhwIjoxNzQzNzI0MjQ4fQ.PWgC6uFgEocX5k4qdUyhQ5pFp6L-bALVfsxcRR3XEkg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTc0MzE2MjY0MSwiZXhwIjoxNzQzMjQ5MDQxfQ.DaRFUYmcH5v0wzIAunKqDDdu9PjMeMcDRwdHAEx2KEI"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"tipo\": \"ADMIN\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/perfiles/4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"perfiles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\": \"admin\", \"password\": \"admin\"}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
