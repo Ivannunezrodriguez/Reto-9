@@ -1,3 +1,20 @@
 /video
-desktop.ini
 
+
+# Archivos basura de Windows
+desktop.ini
+Thumbs.db
+
+# Archivos ocultos de sistema
+$RECYCLE.BIN/
+.DS_Store
+ehthumbs.db
+*.lnk
+
+# Archivos temporales comunes
+*.tmp
+*.bak
+*.swp
+
+# Archivos de usuario
+*.log
