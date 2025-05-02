@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<VBox alignment="CENTER" spacing="10.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.reto.controller.LoginController">
+
+    <Label text="Iniciar Sesión" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+    <TextField fx:id="usernameField" promptText="Usuario" maxWidth="200" />
+    <PasswordField fx:id="passwordField" promptText="Contraseña" maxWidth="200" />
+
+    <Button text="Login" onAction="#handleLogin" maxWidth="100" />
+
+    <Label fx:id="errorLabel" textFill="red" />
+
+</VBox>

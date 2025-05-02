@@ -13,7 +13,7 @@ public class APP extends Application {
     public void start(Stage stage) {
         try {
             // Cargar el archivo FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/reto/gestion_vacantes.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/reto/LoginView.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 800, 600);  // Ajuste de tamaño a 800x600
 
             // Configurar la ventana
