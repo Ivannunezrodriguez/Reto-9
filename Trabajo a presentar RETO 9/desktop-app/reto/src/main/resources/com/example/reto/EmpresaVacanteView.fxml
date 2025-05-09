@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1"
+            fx:controller="com.example.reto.controller.VacanteController">
+
+    <top>
+        <MenuBar>
+            <Menu text="Vacantes">
+                <MenuItem onAction="#crearVacante" text="Crear Vacante" />
+                <MenuItem onAction="#editarVacante" text="Editar Vacante" />
+                <MenuItem onAction="#eliminarVacante" text="Eliminar Vacante" />
+            </Menu>
+            <Menu text="Administrar">
+                <MenuItem text="Usuarios" />
+            </Menu>
+        </MenuBar>
+    </top>
+
+    <center>
+        <VBox spacing="10" alignment="TOP_LEFT">
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+            <!-- Campo de Búsqueda -->
+            <HBox spacing="10">
+                <Label text="Buscar Vacante:" />
+                <TextField fx:id="busquedaField" onKeyReleased="#filtrarVacantes" promptText="Ingresa texto de búsqueda" />
+            </HBox>
+
+            <!-- Filtros -->
+            <HBox spacing="10">
+                <Label text="Filtrar por Estado:" />
+                <ComboBox fx:id="estadoFiltroCombo" onAction="#filtrarVacantes" prefWidth="150">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="Todos" />
+                            <String fx:value="CREADA" />
+                            <String fx:value="ASIGNADA" />
+                            <String fx:value="CANCELADA" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+
+                <Label text="Filtrar por Ubicación:" />
+                <TextField fx:id="ubicacionFiltroField" onKeyReleased="#filtrarVacantes" promptText="Escribe ubicación" />
+            </HBox>
+
+            <!-- Tabla -->
+            <ScrollPane>
+                <TableView fx:id="vacanteTable" prefWidth="650">
+                    <columns>
+                        <TableColumn fx:id="tituloColumn" text="Título" />
+                        <TableColumn fx:id="descripcionColumn" text="Descripción" />
+                        <TableColumn fx:id="ubicacionColumn" text="Ubicación" />
+                        <TableColumn fx:id="fechaColumn" text="Fecha Publicación" />
+                        <TableColumn fx:id="estadoColumn" text="Estado" />
+                    </columns>
+                </TableView>
+            </ScrollPane>
+
+            <!-- Paginación -->
+            <HBox spacing="10" alignment="CENTER">
+                <Button text="Anterior" onAction="#paginaAnterior" />
+                <Label fx:id="paginaLabel" text="Página 1" />
+                <Button text="Siguiente" onAction="#paginaSiguiente" />
+            </HBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <!-- Formulario -->
+            <VBox fx:id="formularioVacante" spacing="10" alignment="TOP_LEFT" visible="false">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <HBox spacing="10">
+                    <Label text="Título de la Vacante" />
+                    <TextField fx:id="tituloField" promptText="Ingresa el título de la vacante" />
+                </HBox>
+
+                <HBox spacing="10">
+                    <Label text="Descripción" />
+                    <TextArea fx:id="descripcionField" promptText="Descripción detallada" prefHeight="100" />
+                </HBox>
+
+                <HBox spacing="10">
+                    <Label text="Ubicación" />
+                    <TextField fx:id="ubicacionField" promptText="Ubicación del puesto" />
+                </HBox>
+
+                <HBox spacing="10">
+                    <Label text="Fecha de publicación" />
+                    <DatePicker fx:id="fechaPicker" promptText="Selecciona la fecha" />
+                </HBox>
+
+                <HBox spacing="10">
+                    <Label fx:id="estadoLabel" text="Estado de la Vacante" visible="false" />
+                    <ComboBox fx:id="estadoCombo" visible="false">
+                        <items>
+                            <FXCollections fx:factory="observableArrayList">
+                                <String fx:value="CREADA" />
+                                <String fx:value="ASIGNADA" />
+                                <String fx:value="CANCELADA" />
+                            </FXCollections>
+                        </items>
+                    </ComboBox>
+                </HBox>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button fx:id="guardarButton" text="Guardar" onAction="#guardarVacante" />
+                    <Button fx:id="cancelarButton" text="Cancelar" onAction="#cancelarVacante" />
+                </HBox>
+            </VBox>
+
+            <!-- Botón de salir siempre visible -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <padding>
+                    <Insets top="10" right="10" bottom="10" left="10"/>
+                </padding>
+                <Button fx:id="btnSalir" text="Salir" onAction="#handleSalir"/>
+            </HBox>
+        </VBox>
+    </bottom>
+</BorderPane>
