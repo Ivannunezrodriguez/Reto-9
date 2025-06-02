@@ -1,0 +1,187 @@
+@startuml
+skinparam backgroundColor white
+skinparam handwritten false
+skinparam defaultTextAlignment center
+skinparam rectangleBorderColor #666666
+skinparam rectangleBackgroundColor #FFFFFF
+skinparam componentBorderColor #666666
+skinparam databaseBorderColor #666666
+skinparam arrowColor #666666
+skinparam componentStyle rectangle
+skinparam packageStyle rectangle
+
+' Definir colores para las capas
+!define RESTCOLOR #F8F9FA
+!define CONTROLLERCOLOR #E3F2FD
+!define SERVICECOLOR #E8F5E9
+!define REPOCOLOR #FFF3E0
+!define DATACOLOR #F3E5F5
+
+' Capa API RESTful
+package "API RESTful" as API #RESTCOLOR {
+  ["/auth"] as AuthEndpoint
+  ["/users"] as UsersEndpoint
+  ["/games"] as GamesEndpoint
+  ["/igdb"] as IGDBEndpoint
+  ["/weaviate"] as WeaviateEndpoint
+  
+  note right of AuthEndpoint
+    POST /login
+    POST /logout
+    GET /status
+  end note
+  
+  note right of UsersEndpoint
+    GET /users
+    GET /users/{id}
+    POST /users
+    PUT /users/{id}
+    DELETE /users/{id}
+    GET /users/me/profile
+    PUT /users/me/profile
+  end note
+  
+  note right of GamesEndpoint
+    GET /games
+    GET /games/{id}
+    GET /games/my
+  end note
+  
+  note right of IGDBEndpoint
+    GET /game/{igdbId}
+    GET /from-local/{localId}
+    GET /search
+    GET /genres
+    GET /platforms
+  end note
+  
+  note right of WeaviateEndpoint
+    GET /recommendations
+  end note
+}
+
+' Capa de controladores
+package "Controladores" as Controllers #CONTROLLERCOLOR {
+  [BasicAuthController] as AuthController
+  [UsersController] as UsersController
+  [GamesController] as GamesController
+  [IGDBController] as IGDBController
+  [WeaviateController] as WeaviateController
+  
+  note bottom of AuthController
+    <&lock> Autenticación
+  end note
+  
+  note bottom of UsersController
+    <&person> Gestión perfiles
+  end note
+  
+  note bottom of GamesController
+    <&graph> Colección juegos
+  end note
+  
+  note bottom of IGDBController
+    <&external-link> API externa
+  end note
+  
+  note bottom of WeaviateController
+    <&lightbulb> IA & Recomendaciones
+  end note
+}
+
+' Capa de servicios
+package "Servicios (Lógica de negocio)" as Services #SERVICECOLOR {
+  [AuthService] as AuthService
+  [IGDBService] as IGDBService
+  [IGDBAuthService] as IGDBAuthService
+  [WeaviateService] as WeaviateService
+  
+  note bottom of IGDBService
+    • ExecuteQuery
+    • GetGameById
+    • GetGenres
+    • GetPlatforms
+    • GetRecentlyReleasedGames
+    • GetUpcomingGames
+    • GetPopularGames
+    • SearchGames
+    • FindSimilarGames
+  end note
+  
+  note bottom of WeaviateService
+    • SaveRecommendation
+    • GetRecommendations
+    • GetEnhancedRecommendations
+    • CheckHealth
+    • StoreGameWithDetails
+    • StoreUserRating
+  end note
+}
+
+' Capa de repositorios
+package "Repositorios (Acceso a datos)" as Repositories #REPOCOLOR {
+  [UserRepository] as UserRepo
+  [GameRepository] as GameRepo
+  [RatingRepository] as RatingRepo
+  [GameStatusRepository] as StatusRepo
+  [RecommendationRepository] as RecoRepo
+  
+  note bottom of UserRepo
+    • GetUserProfile
+    • SaveUserProfile
+  end note
+  
+  note bottom of GameRepo
+    • GetAll
+    • GetById
+    • GetGamesByIds
+    • Create
+    • Update
+    • Delete
+  end note
+}
+
+' Capa de acceso a datos
+package "Capa de Datos" as Data #DATACOLOR {
+  [Database] as DB
+  database "PostgreSQL" as PostgreSQL
+}
+
+' Definir las conexiones entre componentes
+AuthEndpoint -down-> AuthController
+UsersEndpoint -down-> UsersController
+GamesEndpoint -down-> GamesController
+IGDBEndpoint -down-> IGDBController
+WeaviateEndpoint -down-> WeaviateController
+
+AuthController -down-> AuthService
+UsersController -down-> UserRepo
+GamesController -down-> GameRepo
+GamesController -down-> StatusRepo
+IGDBController -down-> IGDBService
+IGDBController -down-> GameRepo
+WeaviateController -down-> WeaviateService
+
+IGDBService -down-> IGDBAuthService
+WeaviateService -down-> GameRepo
+
+UserRepo -down-> DB
+GameRepo -down-> DB
+RatingRepo -down-> DB
+StatusRepo -down-> DB
+RecoRepo -down-> DB
+
+DB -down-> PostgreSQL
+
+legend
+  |= Símbolo |= Significado |
+  | <&lock> | Seguridad y autenticación |
+  | <&person> | Gestión de usuarios |
+  | <&graph> | Gestión de videojuegos |
+  | <&external-link> | API externa (IGDB) |
+  | <&lightbulb> | Inteligencia artificial |
+endlegend
+
+title Arquitectura de Capas - Catálogo Inteligente de Videojuegos
+footer Modelo de capas con separación de responsabilidades
+@enduml

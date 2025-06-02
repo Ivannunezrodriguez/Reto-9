@@ -1,21 +1,166 @@
-/video
-*.mp4
-
-
-# Archivos basura de Windows
-desktop.ini
+####################################
+# SISTEMA OPERATIVO (Windows)
+####################################
+# Archivos innecesarios de Windows
 Thumbs.db
-
-# Archivos ocultos de sistema
-$RECYCLE.BIN/
-.DS_Store
 ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
 *.lnk
 
-# Archivos temporales comunes
+####################################
+# IDEs y EDITORES
+####################################
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+out/
+
+# Android Studio
+.gradle/
+local.properties
+.cxx/
+.externalNativeBuild/
+build/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.vcxproj.*
+ipch/
+Generated\ Files/
+*.ncb
+*.aps
+*.cache
+*.ilk
+*.log
+*.pdb
+*.obj
+*.tlog
+*.idb
+*.opendb
+
+# Visual Studio Code
+.vscode/
+
+# JetBrains Rider (RD)
+.idea/
+*.sln.iml
+
+####################################
+# JAVA / KOTLIN
+####################################
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.hprof
+
+# Maven / Gradle
+target/
+build/
+*.mvn/
+.mvn/
+!**/src/**/mvnw
+!**/src/**/mvnw.cmd
+.gradle/
+build/
+**/build/
+
+# Kotlin specific
+*.kts
+*.kotlin_module
+
+####################################
+# .NET / C#
+####################################
+bin/
+obj/
+*.dll
+*.exe
+*.cache
+*.pdb
+*.mdb
+*.log
+*.db
+
+# Rider
+.idea/
+*.DotSettings.user
+
+####################################
+# ARCHIVOS TEMPORALES
+####################################
 *.tmp
+*.temp
 *.bak
 *.swp
+*.swo
+*.~*
+*.orig
+*.rej
+*.old
 
-# Archivos de usuario
+####################################
+# GOOGLE DRIVE
+####################################
+# Evita archivos sincronizados o conflictos
+*.gdoc
+*.gsheet
+*.gslides
+*.gdraw
+*.gtable
+*.gform
+.gdrive/
+
+####################################
+# ENTORNOS / CONFIG PRIVADA
+####################################
+.env
+.env.*
+*.keystore
+secrets.*
+config.local.*
+
+####################################
+# LOGS Y CACHÉ
+####################################
 *.log
+*.pid
+*.pid.lock
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Cache
+.cache/
+logs/
+tmp/
+temp/
+
+####################################
+# BACKUPS Y ARCHIVOS DE PRUEBA
+####################################
+*~
+*.bak
+*.old
+*.zip
+*.rar
+*.tar.gz
+*.7z
+*.tmp
+*.swp
+
+# Carpetas comunes de salida o distribución
+dist/
+output/
+publish/
+release/
+*.mp4
